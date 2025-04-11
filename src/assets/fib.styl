@@ -1,0 +1,28 @@
+@grid: 1 / 100vw 100vh / #125cde;
+background-color: rgb(var(--black));
+@content: @svg(
+    viewBox: -600 -600 1200 1200;
+    circle * 3600 {
+        fill: @pick(
+            rgb(var(--green-3)),
+            rgb(var(--green-4)),
+            rgb(var(--green-5)),
+            rgb(var(--green-6)),
+            rgb(var(--green-7)),
+            rgb(var(--green-8)),
+            rgb(var(--green-9)),
+        );
+        r: @sqrt(@n / 60);
+        cx: $(@n * .6180339887498949 ^4 * cos(2π * @n *.6180339887498949));
+        cy: $(@n * .6180339887498949 ^4 * sin(2π * @n *.6180339887498949));
+    }
+);
+& svg {
+    transform: scale(.1) rotate(0);
+    animation: exp 120s;
+}
+@keyframes exp {
+    to {
+        transform: scale(9) rotate(7200deg);
+    }
+}
